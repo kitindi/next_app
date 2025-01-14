@@ -7,7 +7,9 @@ type User = {
 };
 
 export default async function UsersServer() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  // delaying component redering for 2 seconds
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const res = await fetch("https://jsonplaceholderr.typicode.com/users");
   const users = await res.json();
 
   return (
