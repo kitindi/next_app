@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SignInButton, UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -16,6 +17,13 @@ export const Navigation = () => {
         <Link href="/products/1" className={pathname === "/products/1" ? "text-amber-600 font-bold" : ""}>
           Product 1
         </Link>
+        <SignedOut>
+          <SignInButton mode="modal" />
+        </SignedOut>
+        <SignedIn>
+          {" "}
+          <UserButton />
+        </SignedIn>
       </nav>
     </div>
   );

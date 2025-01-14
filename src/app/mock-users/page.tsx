@@ -1,4 +1,5 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache"; // for reloading the cache after form submission
+import { auth, currentUser } from "@clerk/nextjs/server";
 type MockUser = {
   id: number;
   name: string;
@@ -12,6 +13,11 @@ export default async function MockUsers() {
 
   async function addUser(formData: FormData) {
     "use server";
+    const authObj = await auth();
+    const userObj = await currentUser();
+
+    console.log(authObj, userObj);
+
     const name = formData.get("name");
     const res = await fetch("https://6786774af80b78923aa6f058.mockapi.io/users", {
       method: "POST",
